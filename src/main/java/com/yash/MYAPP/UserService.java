@@ -3,6 +3,8 @@ package com.yash.MYAPP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -31,7 +33,13 @@ public class UserService {
     }
 
     public String getUsername(long id) {
-        return userRepository.getById(id).getUsername();
+        Optional<UserAuthenticationDetails> userAuthenticationDetailsOptional =  userRepository.findById(id);
+        if(userAuthenticationDetailsOptional.isPresent()) {
+            return userAuthenticationDetailsOptional.get().getUsername();
+        }
+        else {
+            return "";
+        }
     }
 
 }

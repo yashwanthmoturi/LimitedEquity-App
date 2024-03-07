@@ -1,17 +1,15 @@
 package com.yash.MYAPP;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document("userAuthenticationDetails")
 public class UserAuthenticationDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
     private Long id; // 7-digit integer
 
+    @Id
     private String username;
 
     private String password;
@@ -42,6 +40,7 @@ public class UserAuthenticationDetails {
         this.username = username;
         this.password = password;
         this.salt = salt;
+        this.id = 1L;
     }
 
     public String getUsername() {
